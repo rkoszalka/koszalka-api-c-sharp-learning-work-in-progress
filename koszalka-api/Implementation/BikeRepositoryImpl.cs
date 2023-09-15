@@ -46,8 +46,8 @@ namespace koszalka_api.Implementation
             parameters.Add("UpdatedDate", _Bike.UpdatedDate, DbType.DateTime);
             using (var connection = _context.CreateConnection())
             {
-               int rows = await connection.ExecuteAsync(query, parameters);
-               return rows;
+                int rows = await connection.ExecuteAsync(query, parameters);
+                return rows;
             }
         }
         public async Task Update(Bike _Bike)

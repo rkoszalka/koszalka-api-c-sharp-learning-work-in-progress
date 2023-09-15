@@ -25,8 +25,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\BranchController.cs" />
     <Compile Remove="Controllers\UserController.cs" />
     <Compile Remove="Controllers\WeatherForecastController.cs" />
+    <Compile Remove="Implementation\BranchRepositoryImpl.cs" />
+    <Compile Remove="Model\Branch.cs" />
+    <Compile Remove="Repository\IBranchRepository.cs" />
     <Compile Remove="WeatherForecast.cs" />
   </ItemGroup>
 

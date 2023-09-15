@@ -1,4 +1,4 @@
-﻿using koszalka_api.Model;
+using koszalka_api.Model;
 using koszalka_api.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,5 +47,15 @@ namespace koszalka_api.Controllers
         {
             _bikeRepository.Delete(id);
         }
+
+
+        [HttpGet("GetAllBikes")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IEnumerable<Bike>> GetAllBikes()
+        {
+            return await _bikeRepository.GetAllAsync();
+        }
+
     }
 }
