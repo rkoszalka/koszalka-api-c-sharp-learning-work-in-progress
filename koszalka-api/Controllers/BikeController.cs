@@ -15,6 +15,8 @@ namespace koszalka_api.Controllers
             _bikeRepository = bikeRepository;
         }
 
+
+
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -23,16 +25,37 @@ namespace koszalka_api.Controllers
             var rowsCreated = await _bikeRepository.Create(bike);
             if (rowsCreated.Equals(1))
             {
-                Response successResponse =  new Response();
-                successResponse.Message = "Created";
-                successResponse.Status = "200";
+                Response successResponse = new Response
+                {
+                    Message = "Created",
+                    Status = "201"
+                };
                 return successResponse;
             };
 
-            Response errorResponse = new Response();
-            errorResponse.Message = "Error";
-            errorResponse.Status = "500";
+            Response errorResponse = new Response
+            {
+                Message = "Error",
+                Status = "500"
+            };
             return errorResponse;
         }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public void DeleteBike(int id)
+        {
+            _bikeRepository.Delete(id);
+        }
+
+
+        [HttpGet("GetAllBikes")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IEnumerable<Bike>> GetAllBikes()
+        {
+            return await _bikeRepository.GetAllAsync();
+        }
+
     }
 }
