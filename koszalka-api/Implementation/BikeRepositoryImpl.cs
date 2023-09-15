@@ -33,7 +33,7 @@ namespace koszalka_api.Implementation
                 return result;
             }
         }
-        public async Task Create(Bike _Bike)
+        public async Task<int> Create(Bike _Bike)
         {
             var query = "INSERT INTO  " + typeof(Bike).Name + " (Name, Description, CreatedDate,UpdatedDate) VALUES (@Name, @Description, @CreatedDate, @UpdatedDate)";
             var parameters = new DynamicParameters();
@@ -43,7 +43,8 @@ namespace koszalka_api.Implementation
             parameters.Add("UpdatedDate", _Bike.UpdatedDate, DbType.DateTime);
             using (var connection = _context.CreateConnection())
             {
-                await connection.ExecuteAsync(query, parameters);
+               int rows = await connection.ExecuteAsync(query, parameters);
+               return rows;
             }
         }
         public async Task Update(Bike _Bike)
