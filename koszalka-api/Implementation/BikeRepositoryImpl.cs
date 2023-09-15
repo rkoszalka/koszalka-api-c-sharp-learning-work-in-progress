@@ -3,6 +3,7 @@ using koszalka_api.Data;
 using koszalka_api.Model;
 using koszalka_api.Repository;
 using System.Data;
+using Microsoft.AspNetCore.OutputCaching;
 
 namespace koszalka_api.Implementation
 {
@@ -50,17 +51,23 @@ namespace koszalka_api.Implementation
                 return rows;
             }
         }
-        public async Task Update(Bike _Bike)
+
+        public async Task<int> Update(Bike _Bike)
         {
-            var query = "UPDATE " + typeof(Bike).Name + " SET Name = @Name, Description = @Description, UpdatedDate = @UpdatedDate WHERE Id = @Id";
+            var query = "UPDATE " + typeof(Bike).Name + " SET Name = @Name, Price = @Price, Model = @Model, Brand = @Brand, Description = @Description, UpdatedDate = @UpdatedDate WHERE Id = @Id";
             var parameters = new DynamicParameters();
-            parameters.Add("Id", _Bike.Id, DbType.Int64);
             parameters.Add("Name", _Bike.Name, DbType.String);
             parameters.Add("Description", _Bike.Description, DbType.String);
+            parameters.Add("Price", _Bike.Price, DbType.String);
+            parameters.Add("Model", _Bike.Model, DbType.String);
+            parameters.Add("Id", _Bike.Id, DbType.Int64);
+            parameters.Add("Brand", _Bike.Brand, DbType.String);
+            parameters.Add("CreatedDate", _Bike.CreatedDate, DbType.DateTime);
             parameters.Add("UpdatedDate", _Bike.UpdatedDate, DbType.DateTime);
             using (var connection = _context.CreateConnection())
             {
-                await connection.ExecuteAsync(query, parameters);
+               int rows = await connection.ExecuteAsync(query, parameters);
+               return rows;
             }
         }
         public async Task Delete(long id)
