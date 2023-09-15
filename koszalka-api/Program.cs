@@ -14,7 +14,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IDapperContext, DapperContext>();
-builder.Services.AddTransient<IBranchRepository, BranchRepository>();
 builder.Services.AddTransient<IBikeRepository, BikeRepository>();
 
 

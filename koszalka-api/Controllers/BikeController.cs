@@ -48,6 +48,15 @@ namespace koszalka_api.Controllers
             _bikeRepository.Delete(id);
         }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<Bike> GetBikeById(long id)
+        {
+            return await _bikeRepository.GetByIdAsync(id);
+        }
+
 
         [HttpGet("GetAllBikes")]
         [ProducesResponseType(StatusCodes.Status200OK)]
