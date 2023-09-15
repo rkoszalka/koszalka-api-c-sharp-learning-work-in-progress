@@ -1,4 +1,4 @@
-﻿using koszalka_api.Model;
+using koszalka_api.Model;
 using koszalka_api.Repository;
 using Microsoft.AspNetCore.Mvc;
 
