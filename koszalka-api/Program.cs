@@ -1,5 +1,6 @@
 using koszalka_api.Data;
-using koszalka_api.Interface;
+using koszalka_api.Implementation;
+using koszalka_api.Data;
 using koszalka_api.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IDapperContext, DapperContext>();
 builder.Services.AddTransient<IBranchRepository, BranchRepository>();
+builder.Services.AddTransient<IBikeRepository, BikeRepository>();
 
 
 var app = builder.Build();
