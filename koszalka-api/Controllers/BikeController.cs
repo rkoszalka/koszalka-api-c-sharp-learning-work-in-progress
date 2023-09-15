@@ -66,5 +66,27 @@ namespace koszalka_api.Controllers
             return await _bikeRepository.GetAllAsync();
         }
 
+        [HttpPut]
+        public async Task<Response> UpdateBike(Bike bike)
+        {
+            var rowsCreated = await _bikeRepository.Update(bike);
+            if (rowsCreated.Equals(1))
+            {
+                Response successResponse = new Response
+                {
+                    Message = "Updated",
+                    Status = "200"
+                };
+                return successResponse;
+            };
+
+            Response errorResponse = new Response
+            {
+                Message = "Error",
+                Status = "500"
+            };
+            return errorResponse;
+        }
+
     }
 }
