@@ -10,16 +10,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Implentation\**" />
+    <Compile Remove="NovaPasta\**" />
+    <Compile Remove="Repository\NovaPasta\**" />
+    <Content Remove="Implentation\**" />
+    <Content Remove="NovaPasta\**" />
+    <Content Remove="Repository\NovaPasta\**" />
+    <EmbeddedResource Remove="Implentation\**" />
+    <EmbeddedResource Remove="NovaPasta\**" />
+    <EmbeddedResource Remove="Repository\NovaPasta\**" />
+    <None Remove="Implentation\**" />
+    <None Remove="NovaPasta\**" />
+    <None Remove="Repository\NovaPasta\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\UserController.cs" />
+    <Compile Remove="Controllers\WeatherForecastController.cs" />
+    <Compile Remove="WeatherForecast.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.151" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Interface\" />
-    <Folder Include="Queries\" />
   </ItemGroup>
 
 </Project>

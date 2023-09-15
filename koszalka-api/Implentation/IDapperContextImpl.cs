@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace koszalka_api.Interface;
+namespace koszalka_api.Implentation;
 
 public interface IDapperContextImpl
 {
