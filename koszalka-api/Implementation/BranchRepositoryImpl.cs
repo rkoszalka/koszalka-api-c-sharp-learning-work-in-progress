@@ -1,9 +1,10 @@
 ﻿using Dapper;
-using koszalka_api.Interface;
+using koszalka_api.Data;
 using koszalka_api.Model;
+using koszalka_api.Repository;
 using System.Data;
 
-namespace koszalka_api.Repository
+namespace koszalka_api.Implementation
 {
     public class BranchRepository : IBranchRepository
     {
@@ -22,7 +23,7 @@ namespace koszalka_api.Repository
                 return result.ToList();
             }
         }
-        public async Task<Branch> GetByIdAsync(Int64 id)
+        public async Task<Branch> GetByIdAsync(long id)
         {
             var query = "SELECT * FROM " + typeof(Branch).Name + " WHERE Id = @Id";
 
@@ -58,7 +59,7 @@ namespace koszalka_api.Repository
                 await connection.ExecuteAsync(query, parameters);
             }
         }
-        public async Task Delete(Int64 id)
+        public async Task Delete(long id)
         {
             var query = "DELETE FROM " + typeof(Branch).Name + " WHERE Id = @Id";
             using (var connection = _context.CreateConnection())
