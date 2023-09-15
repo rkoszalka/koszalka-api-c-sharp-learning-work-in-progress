@@ -18,10 +18,21 @@ namespace koszalka_api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public Bike CreateBranch(Bike bike)
+        public async Task<Response> CreateBike(Bike bike)
         {
-            _bikeRepository.Create(bike);
-            return bike;
+            var rowsCreated = await _bikeRepository.Create(bike);
+            if (rowsCreated.Equals(1))
+            {
+                Response successResponse =  new Response();
+                successResponse.Message = "Created";
+                successResponse.Status = "200";
+                return successResponse;
+            };
+
+            Response errorResponse = new Response();
+            errorResponse.Message = "Error";
+            errorResponse.Status = "500";
+            return errorResponse;
         }
     }
 }
