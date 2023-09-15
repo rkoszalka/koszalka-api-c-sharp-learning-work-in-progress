@@ -15,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IDapperContext, DapperContext>();
 builder.Services.AddTransient<IBikeRepository, BikeRepository>();
+builder.Services.AddTransient<EntityFrameworkConfigurationContext>();
 
 
 var app = builder.Build();

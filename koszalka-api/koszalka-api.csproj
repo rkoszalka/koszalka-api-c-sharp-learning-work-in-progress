@@ -11,16 +11,12 @@
 
   <ItemGroup>
     <Compile Remove="Implentation\**" />
-    <Compile Remove="NovaPasta\**" />
     <Compile Remove="Repository\NovaPasta\**" />
     <Content Remove="Implentation\**" />
-    <Content Remove="NovaPasta\**" />
     <Content Remove="Repository\NovaPasta\**" />
     <EmbeddedResource Remove="Implentation\**" />
-    <EmbeddedResource Remove="NovaPasta\**" />
     <EmbeddedResource Remove="Repository\NovaPasta\**" />
     <None Remove="Implentation\**" />
-    <None Remove="NovaPasta\**" />
     <None Remove="Repository\NovaPasta\**" />
   </ItemGroup>
 
@@ -28,6 +24,8 @@
     <Compile Remove="Controllers\BranchController.cs" />
     <Compile Remove="Controllers\UserController.cs" />
     <Compile Remove="Controllers\WeatherForecastController.cs" />
+    <Compile Remove="Data\EntityFrameworkContext.cs" />
+    <Compile Remove="Data\IEntityFrameworkContext.cs" />
     <Compile Remove="Implementation\BranchRepositoryImpl.cs" />
     <Compile Remove="Model\Branch.cs" />
     <Compile Remove="Repository\IBranchRepository.cs" />
@@ -35,10 +33,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BundleTransformer.Core" Version="1.10.0" />
     <PackageReference Include="Dapper" Version="2.0.151" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Design" Version="1.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
