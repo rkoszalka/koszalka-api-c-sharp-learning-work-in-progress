@@ -1,6 +1,5 @@
 using AutoMapper;
 using koszalka_api.Data;
-using koszalka_api.Implementation;
 using koszalka_api.Profiles;
 using koszalka_api.Repository;
 using koszalka_api.Service;
@@ -17,11 +16,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IDapperContext, DapperContext>();
-builder.Services.AddTransient<IBikeRepository, BikeRepository>();
+builder.Services.AddTransient<IBikeRepository, BikeService>();
 builder.Services.AddTransient<EntityFrameworkConfigurationContext>();
 builder.Services.AddTransient<ShoesService>();
 
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddAutoMapper(typeof(ShoesProfile));
+
 
 var app = builder.Build();
 

@@ -20,18 +20,18 @@ namespace koszalka_api.Service
     public class ShoesService : IShoesInterface
     {
         // @todo implement mapper, fix dependency injection problem
-        //private readonly IMapper _mapper;
+        private readonly IMapper _mapper;
         private readonly EntityFrameworkConfigurationContext _dbContext;
 
-        public ShoesService(EntityFrameworkConfigurationContext dbContext)
+        public ShoesService(IMapper mapper, EntityFrameworkConfigurationContext dbContext)
         {
-            //_mapper = mapper;
+            _mapper = mapper;
             _dbContext = dbContext;
 
         }
         
 
-        public async Task<ActionResult<IEnumerable<Shoes>>> GetShoes()
+        public async Task<ActionResult<IEnumerable<ShoesDTO>>> GetShoes()
         {
             List<Shoes> shoesResult = await _dbContext.Shoes.ToListAsync();
 
@@ -40,13 +40,15 @@ namespace koszalka_api.Service
                 return null;
             }
 
-            return shoesResult;
+            return _mapper.Map<List<ShoesDTO>>(shoesResult);
+
         }
 
 
-        public async Task<Shoes> GetShoe(long id)
+        public async Task<ShoesDTO> GetShoe(long id)
         {
-            return await _dbContext.Shoes.FindAsync(id);
+            var response = await _dbContext.Shoes.FindAsync(id);
+            return _mapper.Map<ShoesDTO>(response);
         }
 
         public async Task<Boolean> PutShoe(long id, Shoes shoes)

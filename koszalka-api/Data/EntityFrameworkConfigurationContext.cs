@@ -20,7 +20,6 @@ namespace koszalka_api.Data
         }
 
         public DbSet<Shoes> Shoes { get; set; }
-        public DbSet<Smartphone> Smartphone { get; set; }
 
     }
 
