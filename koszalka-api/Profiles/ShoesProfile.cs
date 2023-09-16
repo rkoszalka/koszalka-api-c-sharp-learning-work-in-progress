@@ -8,7 +8,10 @@ namespace koszalka_api.Profiles
     {
         public ShoesProfile()
         {
-            CreateMap<Shoes, ShoesDTO>();
+            CreateMap<Shoes, ShoesDTO>()
+                .ForMember(dest => dest.Brand, opt => opt.MapFrom(x => x.Brand))
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(x => x.Id))
+                .ForMember(dest => dest.Size, opt => opt.MapFrom(x => x.Size));
         }
     }
 }

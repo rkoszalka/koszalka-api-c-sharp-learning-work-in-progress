@@ -38,7 +38,6 @@
     <Compile Remove="Controllers\WeatherForecastController.cs" />
     <Compile Remove="Data\EntityFrameworkContext.cs" />
     <Compile Remove="Data\IEntityFrameworkContext.cs" />
-    <Compile Remove="Implementation\BranchRepositoryImpl.cs" />
     <Compile Remove="Model\Branch.cs" />
     <Compile Remove="Repository\IBranchRepository.cs" />
     <Compile Remove="WeatherForecast.cs" />

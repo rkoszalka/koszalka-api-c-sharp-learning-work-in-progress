@@ -29,7 +29,7 @@ namespace koszalka_api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Shoes>>> GetShoes()
+        public async Task<ActionResult<IEnumerable<ShoesDTO>>> GetShoes()
         {
             var response = await _service.GetShoes();
             if (response == null)
@@ -40,9 +40,9 @@ namespace koszalka_api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Shoes>> GetShoe(long id)
+        public async Task<ActionResult<ShoesDTO>> GetShoe(long id)
         {
-            ActionResult<Shoes> response = await _service.GetShoe(id);
+            ActionResult<ShoesDTO> response = await _service.GetShoe(id);
             if (response == null)
             {
                 return NoContent();
