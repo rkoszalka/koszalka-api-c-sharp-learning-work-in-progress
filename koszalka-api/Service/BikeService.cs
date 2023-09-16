@@ -3,15 +3,15 @@ using koszalka_api.Model;
 using koszalka_api.Repository;
 using System.Data;
 using Microsoft.AspNetCore.OutputCaching;
-using koszalka_api.Interface;
+using koszalka_api.Data;
 
 namespace koszalka_api.Service
 
 {
     public class BikeService : IBikeRepository
     {
-        private readonly IDapperContext _context;
-        public BikeService(IDapperContext context)
+        private readonly DapperContext _context;
+        public BikeService(DapperContext context)
         {
             _context = context;
         }

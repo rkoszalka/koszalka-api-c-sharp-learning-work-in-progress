@@ -3,7 +3,6 @@ using koszalka_api.Data;
 using koszalka_api.Profiles;
 using koszalka_api.Repository;
 using koszalka_api.Service;
-using koszalka_api.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,14 +14,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddTransient<IDapperContext, DapperContext>();
+
+
 builder.Services.AddTransient<IBikeRepository, BikeService>();
+builder.Services.AddTransient<IShoeRepository, ShoesService>();
 builder.Services.AddTransient<EntityFrameworkConfigurationContext>();
-builder.Services.AddTransient<ShoesService>();
+builder.Services.AddTransient<DapperContext>();
 
-builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddAutoMapper(typeof(ShoesProfile));
-
 
 var app = builder.Build();
 

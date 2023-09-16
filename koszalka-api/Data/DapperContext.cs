@@ -1,10 +1,9 @@
-﻿using koszalka_api.Interface;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace koszalka_api.Data
 {
-    public class DapperContext : IDapperContext
+    public class DapperContext
     {
         private readonly IConfiguration _iConfiguration;
         private readonly string _connString;
