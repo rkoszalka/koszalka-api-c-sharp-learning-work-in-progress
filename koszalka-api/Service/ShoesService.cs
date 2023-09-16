@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using koszalka_api.Data;
 using koszalka_api.DTO;
-using koszalka_api.Interface;
 using koszalka_api.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,11 +12,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using AutoMapper;
 using Microsoft.CodeAnalysis;
-
+using koszalka_api.Repository;
 
 namespace koszalka_api.Service
 {
-    public class ShoesService : IShoesInterface
+    public class ShoesService : IShoeRepository
     {
         // @todo implement mapper, fix dependency injection problem
         private readonly IMapper _mapper;
