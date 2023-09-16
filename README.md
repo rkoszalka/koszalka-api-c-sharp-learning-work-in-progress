@@ -10,3 +10,5 @@ Using two different ORM's for learning purpose.
 Using also AutoMapper.
 
 Still lot of things to learn and improve.
+
+Using Docker Container
