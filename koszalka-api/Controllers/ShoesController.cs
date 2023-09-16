@@ -25,10 +25,14 @@ namespace koszalka_api.Controllers
             _service = service;
         }
 
-        // GET: api/Shoes
         [HttpGet]
         public async Task<IEnumerable<ShoesDTO>> GetShoes()
         {
+            var response = await _service.GetShoes();
+            if (response == null)
+            {
+                return null;
+            }
             return await _service.GetShoes();
         }
 
