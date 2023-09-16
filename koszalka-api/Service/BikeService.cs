@@ -33,6 +33,7 @@ namespace koszalka_api.Service
         }
         public async Task<BikeDTO> GetByIdAsync(long id)
         {
+
             var query = "SELECT * FROM " + typeof(Bike).Name + " WHERE Id = @Id";
 
             using (var connection = _context.CreateConnection())
@@ -42,17 +43,19 @@ namespace koszalka_api.Service
                 return resultDto;
             }
         }
-        public async Task<int> Create(Bike _Bike)
+        public async Task<int> Create(BikeDTO bikeDto)
         {
+            var bikeEntity = _mapper.Map<Bike>(bikeDto);
+
             var query = "INSERT INTO  " + typeof(Bike).Name + " (Name, Description, Price, Model, Brand, CreatedDate,UpdatedDate) VALUES (@Name, @Description, @Price, @Model, @Brand, @CreatedDate, @UpdatedDate)";
             var parameters = new DynamicParameters();
-            parameters.Add("Name", _Bike.Name, DbType.String);
-            parameters.Add("Description", _Bike.Description, DbType.String);
-            parameters.Add("Price", _Bike.Price, DbType.String);
-            parameters.Add("Model", _Bike.Model, DbType.String);
-            parameters.Add("Brand", _Bike.Brand, DbType.String);
-            parameters.Add("CreatedDate", _Bike.CreatedDate, DbType.DateTime);
-            parameters.Add("UpdatedDate", _Bike.UpdatedDate, DbType.DateTime);
+            parameters.Add("Name", bikeEntity.Name, DbType.String);
+            parameters.Add("Description", bikeEntity.Description, DbType.String);
+            parameters.Add("Price", bikeEntity.Price, DbType.String);
+            parameters.Add("Model", bikeEntity.Model, DbType.String);
+            parameters.Add("Brand", bikeEntity.Brand, DbType.String);
+            parameters.Add("CreatedDate", bikeEntity.CreatedDate, DbType.DateTime);
+            parameters.Add("UpdatedDate", bikeEntity.UpdatedDate, DbType.DateTime);
             using (var connection = _context.CreateConnection())
             {
                 int rows = await connection.ExecuteAsync(query, parameters);
@@ -60,18 +63,20 @@ namespace koszalka_api.Service
             }
         }
 
-        public async Task<int> Update(Bike _Bike)
+        public async Task<int> Update(BikeDTO bikeDto)
         {
+            var bikeEntity = _mapper.Map<Bike>(bikeDto);
+
             var query = "UPDATE " + typeof(Bike).Name + " SET Name = @Name, Price = @Price, Model = @Model, Brand = @Brand, Description = @Description, UpdatedDate = @UpdatedDate WHERE Id = @Id";
             var parameters = new DynamicParameters();
-            parameters.Add("Name", _Bike.Name, DbType.String);
-            parameters.Add("Description", _Bike.Description, DbType.String);
-            parameters.Add("Price", _Bike.Price, DbType.String);
-            parameters.Add("Model", _Bike.Model, DbType.String);
-            parameters.Add("Id", _Bike.Id, DbType.Int64);
-            parameters.Add("Brand", _Bike.Brand, DbType.String);
-            parameters.Add("CreatedDate", _Bike.CreatedDate, DbType.DateTime);
-            parameters.Add("UpdatedDate", _Bike.UpdatedDate, DbType.DateTime);
+            parameters.Add("Name", bikeEntity.Name, DbType.String);
+            parameters.Add("Description", bikeEntity.Description, DbType.String);
+            parameters.Add("Price", bikeEntity.Price, DbType.String);
+            parameters.Add("Model", bikeEntity.Model, DbType.String);
+            parameters.Add("Id", bikeEntity.Id, DbType.Int64);
+            parameters.Add("Brand", bikeEntity.Brand, DbType.String);
+            parameters.Add("CreatedDate", bikeEntity.CreatedDate, DbType.DateTime);
+            parameters.Add("UpdatedDate", DateTime.Now, DbType.DateTime);
             using (var connection = _context.CreateConnection())
             {
                 int rows = await connection.ExecuteAsync(query, parameters);

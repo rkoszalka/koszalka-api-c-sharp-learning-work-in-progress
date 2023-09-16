@@ -1,6 +1,8 @@
+using AutoMapper;
 using koszalka_api.Model;
 using koszalka_api.Repository;
 using Microsoft.AspNetCore.Mvc;
+using static Dapper.SqlMapper;
 
 // Controller using Dapper ORM examples
 namespace koszalka_api.Controllers
@@ -10,10 +12,12 @@ namespace koszalka_api.Controllers
     public class BikeController : Controller
     {
         private readonly IBikeRepository _bikeRepository;
+        private readonly IMapper _mapper;
 
-        public BikeController(IBikeRepository bikeRepository)
+        public BikeController(IBikeRepository bikeRepository, IMapper mapper)
         {
             _bikeRepository = bikeRepository;
+            _mapper = mapper;
         }
 
 
@@ -21,7 +25,7 @@ namespace koszalka_api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateBike(Bike bike)
+        public async Task<IActionResult> CreateBike(BikeDTO bike)
         {
             var rowsCreated = await _bikeRepository.Create(bike);
             if (rowsCreated.Equals(1))
@@ -58,7 +62,7 @@ namespace koszalka_api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateBike(Bike bike)
+        public async Task<IActionResult> UpdateBike(BikeDTO bike)
         {
             var rowsCreated = await _bikeRepository.Update(bike);
             if (rowsCreated.Equals(1))
