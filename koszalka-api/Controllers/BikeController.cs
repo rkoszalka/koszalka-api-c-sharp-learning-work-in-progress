@@ -43,7 +43,7 @@ namespace koszalka_api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<Bike> GetBikeById(long id)
+        public async Task<BikeDTO> GetBikeById(long id)
         {
             return await _bikeRepository.GetByIdAsync(id);
         }
@@ -52,7 +52,7 @@ namespace koszalka_api.Controllers
         [HttpGet("GetAllBikes")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IEnumerable<Bike>> GetAllBikes()
+        public async Task<IEnumerable<BikeDTO>> GetAllBikes()
         {
             return await _bikeRepository.GetAllAsync();
         }
