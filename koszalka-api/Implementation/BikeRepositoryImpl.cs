@@ -1,9 +1,9 @@
 ﻿using Dapper;
-using koszalka_api.Data;
 using koszalka_api.Model;
 using koszalka_api.Repository;
 using System.Data;
 using Microsoft.AspNetCore.OutputCaching;
+using koszalka_api.Interface;
 
 namespace koszalka_api.Implementation
 {

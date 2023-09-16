@@ -2,7 +2,7 @@
 
 namespace koszalka_api.Interface;
 
-public interface IDapperContextImpl
+public interface IDapperContext
 {
     IDbConnection CreateConnection();
 }

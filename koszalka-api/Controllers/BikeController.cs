@@ -2,6 +2,7 @@ using koszalka_api.Model;
 using koszalka_api.Repository;
 using Microsoft.AspNetCore.Mvc;
 
+// Controller using Dapper ORM examples
 namespace koszalka_api.Controllers
 {
     [ApiController]
@@ -20,25 +21,15 @@ namespace koszalka_api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<Response> CreateBike(Bike bike)
+        public async Task<IActionResult> CreateBike(Bike bike)
         {
             var rowsCreated = await _bikeRepository.Create(bike);
             if (rowsCreated.Equals(1))
             {
-                Response successResponse = new Response
-                {
-                    Message = "Created",
-                    Status = "201"
-                };
-                return successResponse;
+                return Ok();
             };
 
-            Response errorResponse = new Response
-            {
-                Message = "Error",
-                Status = "500"
-            };
-            return errorResponse;
+            return UnprocessableEntity();
         }
 
         [HttpDelete("{id}")]
@@ -67,25 +58,14 @@ namespace koszalka_api.Controllers
         }
 
         [HttpPut]
-        public async Task<Response> UpdateBike(Bike bike)
+        public async Task<IActionResult> UpdateBike(Bike bike)
         {
             var rowsCreated = await _bikeRepository.Update(bike);
             if (rowsCreated.Equals(1))
             {
-                Response successResponse = new Response
-                {
-                    Message = "Updated",
-                    Status = "200"
-                };
-                return successResponse;
+                return Ok();
             };
-
-            Response errorResponse = new Response
-            {
-                Message = "Error",
-                Status = "500"
-            };
-            return errorResponse;
+            return UnprocessableEntity();
         }
 
     }

@@ -12,6 +12,7 @@ using koszalka_api.Model;
 using koszalka_api.Service;
 using Azure;
 
+//Controller using EntityFramework examples
 namespace koszalka_api.Controllers
 {
     [Route("[controller]")]

@@ -1,10 +1,10 @@
 using AutoMapper;
 using koszalka_api.Data;
 using koszalka_api.Implementation;
-using koszalka_api.Data;
 using koszalka_api.Profiles;
 using koszalka_api.Repository;
 using koszalka_api.Service;
+using koszalka_api.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
