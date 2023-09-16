@@ -11,12 +11,24 @@
 
   <ItemGroup>
     <Compile Remove="Implentation\**" />
+    <Compile Remove="NovaPasta1\**" />
+    <Compile Remove="NovaPasta2\**" />
+    <Compile Remove="NovaPasta\**" />
     <Compile Remove="Repository\NovaPasta\**" />
     <Content Remove="Implentation\**" />
+    <Content Remove="NovaPasta1\**" />
+    <Content Remove="NovaPasta2\**" />
+    <Content Remove="NovaPasta\**" />
     <Content Remove="Repository\NovaPasta\**" />
     <EmbeddedResource Remove="Implentation\**" />
+    <EmbeddedResource Remove="NovaPasta1\**" />
+    <EmbeddedResource Remove="NovaPasta2\**" />
+    <EmbeddedResource Remove="NovaPasta\**" />
     <EmbeddedResource Remove="Repository\NovaPasta\**" />
     <None Remove="Implentation\**" />
+    <None Remove="NovaPasta1\**" />
+    <None Remove="NovaPasta2\**" />
+    <None Remove="NovaPasta\**" />
     <None Remove="Repository\NovaPasta\**" />
   </ItemGroup>
 
@@ -33,6 +45,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions" Version="2.1.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="BundleTransformer.Core" Version="1.10.0" />
     <PackageReference Include="Dapper" Version="2.0.151" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />

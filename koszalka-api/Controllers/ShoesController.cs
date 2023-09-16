@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using koszalka_api.Data;
+using koszalka_api.DTO;
 using koszalka_api.Model;
+using koszalka_api.Service;
 
 namespace koszalka_api.Controllers
 {
@@ -15,21 +17,19 @@ namespace koszalka_api.Controllers
     public class ShoesController : ControllerBase
     {
         private readonly EntityFrameworkConfigurationContext _context;
+        private readonly ShoesService _service;
 
-        public ShoesController(EntityFrameworkConfigurationContext context)
+        public ShoesController(EntityFrameworkConfigurationContext context, ShoesService service)
         {
             _context = context;
+            _service = service;
         }
 
         // GET: api/Shoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Shoes>>> GetShoes()
+        public async Task<IEnumerable<ShoesDTO>> GetShoes()
         {
-          if (_context.Shoes == null)
-          {
-              return NotFound();
-          }
-            return await _context.Shoes.ToListAsync();
+            return await _service.GetShoes();
         }
 
         // GET: api/Shoes/5
