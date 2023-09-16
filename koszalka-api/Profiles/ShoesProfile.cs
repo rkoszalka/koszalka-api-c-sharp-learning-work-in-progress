@@ -6,13 +6,9 @@ namespace koszalka_api.Profiles
 {
     public class ShoesProfile : Profile
     {
-
         public ShoesProfile()
         {
             CreateMap<Shoes, ShoesDTO>();
         }
-
-
-        
     }
 }

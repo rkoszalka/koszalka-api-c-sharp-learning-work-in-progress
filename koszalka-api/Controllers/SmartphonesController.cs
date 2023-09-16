@@ -10,7 +10,7 @@ using koszalka_api.Model;
 
 namespace koszalka_api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class SmartphonesController : ControllerBase
     {
