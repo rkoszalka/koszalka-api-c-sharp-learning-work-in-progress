@@ -4,6 +4,9 @@ using koszalka_api.Repository;
 using System.Data;
 using Microsoft.AspNetCore.OutputCaching;
 using koszalka_api.Data;
+using AutoMapper;
+using koszalka_api.DTO;
+using Microsoft.AspNetCore.Mvc;
 
 namespace koszalka_api.Service
 
@@ -11,28 +14,32 @@ namespace koszalka_api.Service
     public class BikeService : IBikeRepository
     {
         private readonly DapperContext _context;
-        public BikeService(DapperContext context)
+        private readonly IMapper _mapper;
+        public BikeService(DapperContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Bike>> GetAllAsync()
+        public async Task<IEnumerable<BikeDTO>> GetAllAsync()
         {
             var query = "SELECT * FROM " + typeof(Bike).Name;
             using (var connection = _context.CreateConnection())
             {
                 var result = await connection.QueryAsync<Bike>(query);
-                return result.ToList();
+                var bikeDto = _mapper.Map<IEnumerable<BikeDTO>>(result);
+                return bikeDto;
             }
         }
-        public async Task<Bike> GetByIdAsync(long id)
+        public async Task<BikeDTO> GetByIdAsync(long id)
         {
             var query = "SELECT * FROM " + typeof(Bike).Name + " WHERE Id = @Id";
 
             using (var connection = _context.CreateConnection())
             {
                 var result = await connection.QuerySingleOrDefaultAsync<Bike>(query, new { id });
-                return result;
+                var resultDto = _mapper.Map<BikeDTO>(result);
+                return resultDto;
             }
         }
         public async Task<int> Create(Bike _Bike)

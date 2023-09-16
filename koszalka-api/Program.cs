@@ -22,6 +22,7 @@ builder.Services.AddTransient<EntityFrameworkConfigurationContext>();
 builder.Services.AddTransient<DapperContext>();
 
 builder.Services.AddAutoMapper(typeof(ShoesProfile));
+builder.Services.AddAutoMapper(typeof(BikeProfile));
 
 var app = builder.Build();
 
