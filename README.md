@@ -1,10 +1,9 @@
 # learning-c-sharp-dotnet-dapper-entity-framework
+## Still ongoing.
+##C# WebApi learning project.
 
-C# WebApi learning project.
-Still ongoing.
 
 ## Implementations
-
 ### Dapper
 ### ORM
 ### Migration
