@@ -2,15 +2,10 @@
 
 C# WebApi learning project.
 
-BikeController is using Dapper.
-Shoes Controller is using Entity Framework.
+## Implementations
 
-Using two different ORM's for learning purpose.
-
-Using also AutoMapper.
-
-Still lot of things to learn and improve.
-
-Using Docker Container
-
-Next step OAuth authentication
+### Dapper
+### ORM
+### Migration
+### Automapper
+### Oauth
