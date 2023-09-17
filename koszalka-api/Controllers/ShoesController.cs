@@ -11,6 +11,8 @@ using koszalka_api.DTO;
 using koszalka_api.Model;
 using koszalka_api.Service;
 using Azure;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 //Controller using EntityFramework examples
 namespace koszalka_api.Controllers
@@ -29,6 +31,7 @@ namespace koszalka_api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<IEnumerable<ShoesDTO>>> GetShoes()
         {
             var response = await _service.GetShoes();
@@ -40,6 +43,7 @@ namespace koszalka_api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ShoesDTO>> GetShoe(long id)
         {
             ActionResult<ShoesDTO> response = await _service.GetShoe(id);
@@ -52,6 +56,7 @@ namespace koszalka_api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutShoe(long id, Shoes shoes)
         {
             if (id != shoes.Id)
@@ -71,6 +76,7 @@ namespace koszalka_api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Shoes>> PostShoe(Shoes shoes)
         {
             var response = await _service.PostShoe(shoes);
@@ -79,6 +85,7 @@ namespace koszalka_api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteShoe(long id)
         {
             var response = await _service.DeleteShoe(id);
