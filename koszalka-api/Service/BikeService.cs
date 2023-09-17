@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using koszalka_api.Model;
-using koszalka_api.Repository;
 using System.Data;
 using Microsoft.AspNetCore.OutputCaching;
 using koszalka_api.Data;
@@ -11,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace koszalka_api.Service
 
 {
-    public class BikeService : IBikeRepository
+    public class BikeService : IBikeService
     {
         private readonly DapperContext _context;
         private readonly IMapper _mapper;
