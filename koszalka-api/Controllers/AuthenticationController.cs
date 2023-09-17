@@ -46,6 +46,7 @@ namespace koszalka_api.Controllers
             {
                 if (!ModelState.IsValid)
                     return BadRequest("Invalid payload");
+                // @todo all users have admin role just for show, in a real application this would be dynamic
                 var (status, message) = await _authService.Registration(model, UserRoles.Admin);
                 if (status == 0)
                 {
