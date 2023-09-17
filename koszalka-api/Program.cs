@@ -1,8 +1,16 @@
 using AutoMapper;
 using koszalka_api.Data;
+using koszalka_api.Model;
 using koszalka_api.Profiles;
-using koszalka_api.Repository;
 using koszalka_api.Service;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
+using Swashbuckle.AspNetCore;
+using Microsoft.CodeAnalysis.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,17 +21,69 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(option =>
+{
+    var jwtSecurityScheme = new OpenApiSecurityScheme
+    {
+        BearerFormat = "JWT",
+        Name = "JWT Authentication",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = JwtBearerDefaults.AuthenticationScheme,
+        Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
+
+        Reference = new OpenApiReference
+        {
+            Id = JwtBearerDefaults.AuthenticationScheme,
+            Type = ReferenceType.SecurityScheme
+        }
+    };
+
+    option.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
+    option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        { jwtSecurityScheme, Array.Empty<string>() }
+    });
+});
 
 
-builder.Services.AddTransient<IBikeRepository, BikeService>();
-builder.Services.AddTransient<IShoeRepository, ShoesService>();
+builder.Services.AddTransient<IBikeService, BikeService>();
+builder.Services.AddTransient<IShoesService, ShoesService>();
+builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<EntityFrameworkConfigurationContext>();
 builder.Services.AddTransient<DapperContext>();
 
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// For Identity  
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddAutoMapper(typeof(ShoesProfile));
 builder.Services.AddAutoMapper(typeof(BikeProfile));
+
+// Adding Authentication  
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["JWTKey:ValidAudience"],
+        ValidIssuer = builder.Configuration["JWTKey:ValidIssuer"],
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(s: builder.Configuration["JWTKey:Secret"]))
+    };
+});
 
 var app = builder.Build();
 

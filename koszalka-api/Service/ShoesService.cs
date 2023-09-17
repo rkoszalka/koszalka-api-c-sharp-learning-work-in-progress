@@ -12,11 +12,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using AutoMapper;
 using Microsoft.CodeAnalysis;
-using koszalka_api.Repository;
 
 namespace koszalka_api.Service
 {
-    public class ShoesService : IShoeRepository
+    public class ShoesService : IShoesService
     {
         // @todo implement mapper, fix dependency injection problem
         private readonly IMapper _mapper;
