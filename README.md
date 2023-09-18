@@ -10,3 +10,4 @@
 #### Automapper
 #### Oauth
 #### Docker
+#### Kafka
