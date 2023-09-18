@@ -11,6 +11,8 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using Swashbuckle.AspNetCore;
 using Microsoft.CodeAnalysis.Options;
+using koszalka_api.Controllers;
+using koszalka_api.Kafka;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +55,7 @@ builder.Services.AddTransient<IShoesService, ShoesService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<EntityFrameworkConfigurationContext>();
 builder.Services.AddTransient<DapperContext>();
+builder.Services.AddTransient<ProducerKafka>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
