@@ -9,20 +9,25 @@ namespace koszalka_api.Controllers
     [ApiController]
     public class KafkaProducerController : Controller
     {
-        private readonly ProducerKafka _producerKafka;
+        private readonly KafkaProducer _kafkaProducer;
+        private readonly IConfiguration _configuration;
 
-        public KafkaProducerController(ProducerKafka producerKafka)
+        public KafkaProducerController(KafkaProducer kafkaProducer, IConfiguration configuration)
         {
-            _producerKafka = producerKafka;
+            _kafkaProducer = kafkaProducer;
+            _configuration = configuration;
         }
 
         [HttpPost]
         [ProducesResponseType(typeof(string), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public string Post([FromQuery] string msg, string topic)
+        public string Post([FromQuery] string msg)
         {
-            return _producerKafka.SendMessageByKafka(msg, topic);
+            CancellationTokenSource cts = new();
+            KafkaConsumer kafkaConsumer = new(_configuration);
+            kafkaConsumer.Run_Consume(_configuration.GetSection("Kafka:BootstrapServers").Value, _configuration.GetSection("Kafka:Topic").Value.Split(',').ToList(), cts.Token);
+            return _kafkaProducer.SendMessageByKafka(msg);
         }
     }
 }
