@@ -5,7 +5,7 @@
 
 ## Implementations so far
 #### Dapper
-#### ORM
+#### Entity Framework
 #### Migration
 #### Automapper
 #### Oauth
