@@ -59,7 +59,6 @@ namespace koszalka_api.Controllers
 
 
         [HttpGet("GetAllBikes")]
-        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IEnumerable<BikeDTO>> GetAllBikes()

@@ -2,17 +2,18 @@
 
 namespace koszalka_api.Kafka
 {
-    public class ProducerKafka
+    public class KafkaProducer
     {
         public readonly IConfiguration _icConfig;
 
-        public ProducerKafka(IConfiguration icConfig)
+        public KafkaProducer(IConfiguration icConfig)
         {
             _icConfig = icConfig;
         }
 
-        public string SendMessageByKafka(string message, string topic)
+        public string SendMessageByKafka(string message)
         {
+            string topic = _icConfig.GetSection("Kafka:Topic").Value;
             var config = new ProducerConfig
             {
                 BootstrapServers = _icConfig.GetSection("Kafka:BootstrapServers").Value,
