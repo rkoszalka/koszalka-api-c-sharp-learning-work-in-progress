@@ -1,13 +1,12 @@
-# learning-c-sharp-dotnet-dapper-entity-framework
+# Project made as a learning tool for C# and .NET 7
 
-## Still ongoing.
-## C# WebApi learning project.
-
+### Still ongoing.
+### C# WebApi learning project.
 
 ## Implementations so far
-### Dapper
-### ORM
-### Migration
-### Automapper
-### Oauth
-### Docker
+#### Dapper
+#### ORM
+#### Migration
+#### Automapper
+#### Oauth
+#### Docker
