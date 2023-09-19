@@ -12,5 +12,7 @@
 #### Docker
 #### Kafka
 I'm using Confluent Cloud Trial on this, but you can easily set up your own local broker using Kafka Docker image.
+Producer and Consumer on the same application just to prove the concept that the events are being produced and consumed.
 #### RabbitMQ
-I'm using RabbitMQ docker image 
+I'm using RabbitMQ docker image.
+Producer and Consumer on the same application just to prove the concept that the events are being produced and consumed.
