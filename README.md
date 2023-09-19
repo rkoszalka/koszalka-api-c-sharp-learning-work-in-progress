@@ -12,3 +12,8 @@
 #### Docker
 #### Kafka
 I'm using Confluent Cloud Trial on this, but you can easily set up your own local broker using Kafka Docker image.
+
+## To be implemented
+
+#### RabbitMQ
+
