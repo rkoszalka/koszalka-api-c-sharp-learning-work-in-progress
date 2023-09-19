@@ -11,3 +11,4 @@
 #### Oauth
 #### Docker
 #### Kafka
+I'm using Confluent Cloud Trial on this, but you easily set up your own broker using Kafka Docker image.
