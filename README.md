@@ -1,5 +1,5 @@
 # Project made as a learning tool for C# and .NET 7
-
+## Still need to implement a clean code and solid architecture, for now it was just to get to know the tools
 ### Still ongoing.
 ### C# WebApi learning project.
 
