@@ -8,6 +8,7 @@ namespace koszalka_api.RabbitMQ
     {
         public void CreateRabbitMQConsumer(WebApplication app)
         {
+            // @todo: use IConfiguration
             var factory = new ConnectionFactory
             {
                 HostName = "host.docker.internal",
