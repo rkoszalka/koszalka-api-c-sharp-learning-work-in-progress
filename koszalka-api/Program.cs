@@ -14,6 +14,7 @@ using Microsoft.CodeAnalysis.Options;
 using koszalka_api.Controllers;
 using koszalka_api.Kafka;
 using System.Collections.Generic;
+using koszalka_api.RabbitMQ;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +55,8 @@ builder.Services.AddSwaggerGen(option =>
 builder.Services.AddTransient<IBikeService, BikeService>();
 builder.Services.AddTransient<IShoesService, ShoesService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IRabitMQProducer, RabitMQProducer>();
+builder.Services.AddTransient<IRabbitMQConsumer, RabbitMQConsumer>();
 builder.Services.AddTransient<EntityFrameworkConfigurationContext>();
 builder.Services.AddTransient<DapperContext>();
 builder.Services.AddTransient<KafkaProducer>();
@@ -107,5 +110,12 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+RabbitMQConsumer rabbitMqConsumer = new();
+rabbitMqConsumer.CreateRabbitMQConsumer(app);
+
+
+
+
+
+
 
