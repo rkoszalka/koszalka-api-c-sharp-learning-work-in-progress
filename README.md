@@ -11,4 +11,4 @@
 #### Oauth
 #### Docker
 #### Kafka
-I'm using Confluent Cloud Trial on this, but you easily set up your own broker using Kafka Docker image.
+I'm using Confluent Cloud Trial on this, but you can easily set up your own local broker using Kafka Docker image.
