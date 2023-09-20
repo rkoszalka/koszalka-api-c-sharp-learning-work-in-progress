@@ -4,6 +4,9 @@ using koszalka_api.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
+using koszalka_api.Caching;
+using Microsoft.IdentityModel.Tokens;
+using NuGet.Protocol;
 using static Dapper.SqlMapper;
 
 // Controller using Dapper ORM examples
@@ -14,12 +17,12 @@ namespace koszalka_api.Controllers
     public class BikeController : Controller
     {
         private readonly IBikeService _bikeService;
-        private readonly IMapper _mapper;
+        private readonly ICacheService _iCacheService;
 
-        public BikeController(IBikeService bikeService, IMapper mapper)
+        public BikeController(IBikeService bikeService, ICacheService cacheService)
         {
             _bikeService = bikeService;
-            _mapper = mapper;
+            _iCacheService = cacheService;
         }
 
 
@@ -63,7 +66,14 @@ namespace koszalka_api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IEnumerable<BikeDTO>> GetAllBikes()
         {
-            return await _bikeService.GetAllAsync();
+            IEnumerable<BikeDTO> response = await _bikeService.GetAllAsync();
+            if (!response.IsNullOrEmpty())
+            {
+                _iCacheService.SetData<IEnumerable<BikeDTO>>("bike", response, DateTimeOffset.Now.AddMinutes(5.0));
+            }
+
+            Console.WriteLine(_iCacheService.GetData<IEnumerable<BikeDTO>>("bike").ToJson());
+            return response;
         }
 
         [HttpPut]
