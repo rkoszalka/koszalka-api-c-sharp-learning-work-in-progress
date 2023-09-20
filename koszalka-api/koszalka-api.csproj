@@ -24,14 +24,14 @@
     <Compile Remove="Controllers\BranchController.cs" />
     <Compile Remove="Controllers\UserController.cs" />
     <Compile Remove="Controllers\WeatherForecastController.cs" />
-    <Compile Remove="Data\EntityFrameworkContext.cs" />
-    <Compile Remove="Data\IEntityFrameworkContext.cs" />
-    <Compile Remove="Model\Branch.cs" />
+    <Compile Remove="Persistence\Data\EntityFrameworkContext.cs" />
+    <Compile Remove="Persistence\Data\IEntityFrameworkContext.cs" />
+    <Compile Remove="Persistence\Model\Branch.cs" />
     <Compile Remove="WeatherForecast.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Migrations\migration.csproj" />
+    <None Include="Persistence\Migrations\migration.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +42,7 @@
     <PackageReference Include="Confluent.Kafka" Version="2.2.0" />
     <PackageReference Include="Dapper" Version="2.0.151" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />

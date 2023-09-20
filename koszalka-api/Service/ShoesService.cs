@@ -1,7 +1,4 @@
 ﻿using AutoMapper;
-using koszalka_api.Data;
-using koszalka_api.DTO;
-using koszalka_api.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,6 +9,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using AutoMapper;
 using Microsoft.CodeAnalysis;
+using koszalka_api.Persistence.Model;
+using koszalka_api.Persistence.Data;
+using koszalka_api.Persistence.DTO;
 
 namespace koszalka_api.Service
 {

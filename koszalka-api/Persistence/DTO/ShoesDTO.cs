@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel;
 
-namespace koszalka_api.DTO
+namespace koszalka_api.Persistence.DTO
 {
     public class ShoesDTO
     {
-        public Int64 Id { get; set; }
+        public long Id { get; set; }
         public string? Brand { get; set; }
         public string? Size { get; set; }
 

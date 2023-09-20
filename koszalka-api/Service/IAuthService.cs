@@ -1,4 +1,4 @@
-﻿using koszalka_api.Model;
+﻿using koszalka_api.Persistence.Model;
 
 namespace koszalka_api.Service
 {

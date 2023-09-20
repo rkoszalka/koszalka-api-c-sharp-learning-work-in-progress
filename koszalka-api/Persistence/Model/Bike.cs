@@ -1,4 +1,4 @@
-﻿namespace koszalka_api.Model
+﻿namespace koszalka_api.Persistence.Model
 {
     public class Bike : BaseEntity
     {

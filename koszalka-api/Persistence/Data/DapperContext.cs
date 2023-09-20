@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace koszalka_api.Data
+namespace koszalka_api.Persistence.Data
 {
     public class DapperContext
     {

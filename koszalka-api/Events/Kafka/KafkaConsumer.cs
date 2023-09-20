@@ -1,7 +1,7 @@
 ﻿using Confluent.Kafka;
 using koszalka_api.Controllers;
 
-namespace koszalka_api.Kafka
+namespace koszalka_api.Events.Kafka
 {
 
     

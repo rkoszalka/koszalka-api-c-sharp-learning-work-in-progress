@@ -1,11 +1,11 @@
 ﻿using Dapper;
-using koszalka_api.Model;
 using System.Data;
 using Microsoft.AspNetCore.OutputCaching;
-using koszalka_api.Data;
 using AutoMapper;
-using koszalka_api.DTO;
 using Microsoft.AspNetCore.Mvc;
+using koszalka_api.Persistence.Model;
+using koszalka_api.Persistence.Data;
+using koszalka_api.Persistence.DTO;
 
 namespace koszalka_api.Service
 

@@ -1,10 +1,10 @@
-﻿using koszalka_api.Model;
+﻿using koszalka_api.Persistence.Model;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Entity;
 
 
-namespace koszalka_api.Data
+namespace koszalka_api.Persistence.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

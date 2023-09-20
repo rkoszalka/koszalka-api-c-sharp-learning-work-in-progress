@@ -1,4 +1,4 @@
-﻿using koszalka_api.Model;
+﻿using koszalka_api.Persistence.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

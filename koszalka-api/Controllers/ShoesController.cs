@@ -6,13 +6,13 @@ using Humanizer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using koszalka_api.Data;
-using koszalka_api.DTO;
-using koszalka_api.Model;
 using koszalka_api.Service;
 using Azure;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using koszalka_api.Persistence.Model;
+using koszalka_api.Persistence.Data;
+using koszalka_api.Persistence.DTO;
 
 //Controller using EntityFramework examples
 namespace koszalka_api.Controllers

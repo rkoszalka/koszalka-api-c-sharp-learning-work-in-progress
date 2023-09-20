@@ -1,6 +1,4 @@
 using AutoMapper;
-using koszalka_api.Data;
-using koszalka_api.Model;
 using koszalka_api.Profiles;
 using koszalka_api.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -12,9 +10,12 @@ using System.Text;
 using Swashbuckle.AspNetCore;
 using Microsoft.CodeAnalysis.Options;
 using koszalka_api.Controllers;
-using koszalka_api.Kafka;
 using System.Collections.Generic;
 using koszalka_api.RabbitMQ;
+using koszalka_api.Persistence.Model;
+using koszalka_api.Persistence.Data;
+using koszalka_api.Events.RabbitMQ;
+using koszalka_api.Events.Kafka;
 
 var builder = WebApplication.CreateBuilder(args);
 

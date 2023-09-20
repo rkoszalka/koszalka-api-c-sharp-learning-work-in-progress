@@ -1,6 +1,6 @@
 ﻿using Confluent.Kafka;
 
-namespace koszalka_api.Kafka
+namespace koszalka_api.Events.Kafka
 {
     public class KafkaProducer
     {
