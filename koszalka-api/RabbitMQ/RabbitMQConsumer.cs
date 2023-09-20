@@ -12,7 +12,7 @@ namespace koszalka_api.RabbitMQ
             var factory = new ConnectionFactory
             {
                 HostName = "host.docker.internal",
-                Port = 206,
+                Port = 207,
                 UserName = "guest",
                 Password  = "guest",
                 VirtualHost = "/",
