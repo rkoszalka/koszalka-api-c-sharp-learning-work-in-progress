@@ -1,10 +1,10 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace koszalka_api.Model
+namespace koszalka_api.Persistence.DTO
 {
     public class BikeDTO
     {
-        public Int64 Id { get; set; }
+        public long Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Price { get; set; }

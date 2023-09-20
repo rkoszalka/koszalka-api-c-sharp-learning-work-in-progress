@@ -1,6 +1,7 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
+using koszalka_api.Events.RabbitMQ;
 
 namespace koszalka_api.RabbitMQ
 {

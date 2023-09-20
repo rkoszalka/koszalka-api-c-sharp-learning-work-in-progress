@@ -1,5 +1,5 @@
-﻿using koszalka_api.DTO;
-using koszalka_api.Model;
+﻿using koszalka_api.Persistence.DTO;
+using koszalka_api.Persistence.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace koszalka_api.Service

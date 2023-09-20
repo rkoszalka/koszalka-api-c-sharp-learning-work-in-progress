@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using koszalka_api.DTO;
-using koszalka_api.Model;
+using koszalka_api.Persistence.DTO;
+using koszalka_api.Persistence.Model;
 
 namespace koszalka_api.Profiles
 {

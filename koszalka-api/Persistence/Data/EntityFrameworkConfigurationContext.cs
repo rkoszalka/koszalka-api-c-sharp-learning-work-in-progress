@@ -1,8 +1,8 @@
-﻿using koszalka_api.Model;
+﻿using koszalka_api.Persistence.Model;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
-namespace koszalka_api.Data
+namespace koszalka_api.Persistence.Data
 {
     public class EntityFrameworkConfigurationContext : DbContext
     {

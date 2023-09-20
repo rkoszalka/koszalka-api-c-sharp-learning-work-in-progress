@@ -1,6 +1,6 @@
 ﻿using System;
 using Confluent.Kafka;
-using koszalka_api.Kafka;
+using koszalka_api.Events.Kafka;
 using Microsoft.AspNetCore.Mvc;
 
 namespace koszalka_api.Controllers
