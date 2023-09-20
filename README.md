@@ -10,6 +10,7 @@
 #### Automapper
 #### Oauth
 #### Docker
+#### Redis
 #### Kafka
 I'm using Confluent Cloud Trial on this, but you can easily set up your own local broker using Kafka Docker image.
 Producer and Consumer on the same application just to prove the concept that the events are being produced and consumed.
