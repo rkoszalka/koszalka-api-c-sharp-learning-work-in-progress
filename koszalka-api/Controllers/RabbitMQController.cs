@@ -2,12 +2,13 @@
 using Confluent.Kafka;
 using koszalka_api.Events.RabbitMQ;
 using koszalka_api.RabbitMQ;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace koszalka_api.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class RabbitMQController : Controller
     {
         private readonly IRabitMQProducer _rabitMQProducer;
@@ -20,6 +21,7 @@ namespace koszalka_api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(string), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
