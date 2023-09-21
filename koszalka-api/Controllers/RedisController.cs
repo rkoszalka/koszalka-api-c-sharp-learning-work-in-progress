@@ -38,7 +38,7 @@ namespace koszalka_api.Controllers
         }
 
 
-        [HttpGet("getSet")]
+        [HttpGet("getData")]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(string), 201)]
         [ProducesResponseType(400)]
