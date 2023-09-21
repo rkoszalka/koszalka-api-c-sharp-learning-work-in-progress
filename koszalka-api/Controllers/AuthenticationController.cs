@@ -1,5 +1,5 @@
 ﻿using koszalka_api.Persistence.Model;
-using koszalka_api.Service;
+using koszalka_api.Persistence.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace koszalka_api.Controllers
@@ -8,10 +8,10 @@ namespace koszalka_api.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IAuthService _authService;
+        private readonly IAuthRepository _authService;
         private readonly ILogger<AuthenticationController> _logger;
 
-        public AuthenticationController(IAuthService authService, ILogger<AuthenticationController> logger)
+        public AuthenticationController(IAuthRepository authService, ILogger<AuthenticationController> logger)
         {
             _authService = authService;
             _logger = logger;

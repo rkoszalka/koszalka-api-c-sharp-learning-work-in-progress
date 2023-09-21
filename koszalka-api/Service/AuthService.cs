@@ -1,4 +1,5 @@
 ﻿using koszalka_api.Persistence.Model;
+using koszalka_api.Persistence.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace koszalka_api.Service
 {
-    public class AuthService : IAuthService
+    public class AuthService : IAuthRepository
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;

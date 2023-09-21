@@ -17,6 +17,7 @@ using koszalka_api.Persistence.Model;
 using koszalka_api.Persistence.Data;
 using koszalka_api.Events.RabbitMQ;
 using koszalka_api.Events.Kafka;
+using koszalka_api.Persistence.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,9 +55,9 @@ builder.Services.AddSwaggerGen(option =>
 });
 
 
-builder.Services.AddTransient<IBikeService, BikeService>();
-builder.Services.AddTransient<IShoesService, ShoesService>();
-builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IBikeRepository, BikeService>();
+builder.Services.AddTransient<IShoesRepository, ShoesService>();
+builder.Services.AddTransient<IAuthRepository, AuthService>();
 builder.Services.AddTransient<IRabitMQProducer, RabitMQProducer>();
 builder.Services.AddTransient<IRabbitMQConsumer, RabbitMQConsumer>();
 builder.Services.AddTransient<ICacheService, CacheService>();
