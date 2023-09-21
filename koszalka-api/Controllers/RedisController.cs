@@ -36,17 +36,6 @@ namespace koszalka_api.Controllers
                 _iCacheService.SetData<string>(key, msg, DateTimeOffset.Now.AddDays(CACHE_TIME));
                 return "Cache set";
         }
-
-        [HttpPost("appendData")]
-        [Authorize(Roles = "Admin")]
-        [ProducesResponseType(typeof(string), 201)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(500)]
-        public async Task<string> Append([FromQuery] string msg, string key)
-        {
-            _iCacheService.AppendData<string>(key, msg);
-            return "Cache set";
-            
-        }
+        
     }
 }
