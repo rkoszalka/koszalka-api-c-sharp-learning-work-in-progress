@@ -1,4 +1,6 @@
-﻿namespace koszalka_api.Caching
+﻿using StackExchange.Redis;
+
+namespace koszalka_api.Caching
 {
     public interface ICacheService
     {
