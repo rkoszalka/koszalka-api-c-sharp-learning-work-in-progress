@@ -1,6 +1,7 @@
 ﻿using System;
 using Confluent.Kafka;
 using koszalka_api.Events.Kafka;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace koszalka_api.Controllers
@@ -19,6 +20,7 @@ namespace koszalka_api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(string), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]

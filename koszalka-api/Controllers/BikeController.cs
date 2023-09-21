@@ -17,12 +17,10 @@ namespace koszalka_api.Controllers
     public class BikeController : Controller
     {
         private readonly IBikeService _bikeService;
-        private readonly ICacheService _iCacheService;
 
-        public BikeController(IBikeService bikeService, ICacheService cacheService)
+        public BikeController(IBikeService bikeService)
         {
             _bikeService = bikeService;
-            _iCacheService = cacheService;
         }
 
 
@@ -62,18 +60,12 @@ namespace koszalka_api.Controllers
 
 
         [HttpGet("GetAllBikes")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IEnumerable<BikeDTO>> GetAllBikes()
         {
-            IEnumerable<BikeDTO> response = await _bikeService.GetAllAsync();
-            if (!response.IsNullOrEmpty())
-            {
-                _iCacheService.SetData<IEnumerable<BikeDTO>>("bike", response, DateTimeOffset.Now.AddMinutes(5.0));
-            }
-
-            Console.WriteLine(_iCacheService.GetData<IEnumerable<BikeDTO>>("bike").ToJson());
-            return response;
+            return await _bikeService.GetAllAsync();
         }
 
         [HttpPut]
