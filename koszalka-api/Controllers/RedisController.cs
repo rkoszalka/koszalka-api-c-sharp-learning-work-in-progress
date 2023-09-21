@@ -36,6 +36,16 @@ namespace koszalka_api.Controllers
                 _iCacheService.SetData<string>(key, msg, DateTimeOffset.Now.AddDays(CACHE_TIME));
                 return "Cache set";
         }
-        
+
+
+        [HttpGet("getSet")]
+        [Authorize(Roles = "Admin")]
+        [ProducesResponseType(typeof(string), 201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        public string GetAllRedisTest([FromQuery] string key)
+        {
+            return _iCacheService.GetData<string>(key).ToString();
+        }
     }
 }
