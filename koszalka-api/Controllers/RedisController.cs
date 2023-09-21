@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.IdentityModel.Tokens;
 using NuGet.Protocol;
+using StackExchange.Redis;
 
 namespace koszalka_api.Controllers
 {
@@ -25,31 +26,26 @@ namespace koszalka_api.Controllers
             _bikeService = bikeService;
         }
 
-        [HttpPost]
+        [HttpPost("singleData")]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(string), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<string> Post([FromQuery] string msg)
+        public async Task<string> Post([FromQuery] string msg, string key)
         {
-            IEnumerable<BikeDTO> response = await _bikeService.GetAllAsync();
-            if (!response.IsNullOrEmpty())
-            {
-                _iCacheService.SetData<string>("redisTest", msg, DateTimeOffset.Now.AddDays(CACHE_TIME));
+                _iCacheService.SetData<string>(key, msg, DateTimeOffset.Now.AddDays(CACHE_TIME));
                 return "Cache set";
-            }
-            
-            return "Without bike to set cache";
         }
 
-        [HttpGet]
+
+        [HttpGet("getData")]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(string), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public string GetAllRedisTest()
+        public string GetAllRedisTest([FromQuery] string key)
         {
-            return _iCacheService.GetData<string>("redisTest").ToJson();
+            return _iCacheService.GetData<string>(key).ToString();
         }
     }
 }
