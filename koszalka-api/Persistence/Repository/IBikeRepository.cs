@@ -1,9 +1,9 @@
 ﻿using koszalka_api.Persistence.DTO;
 using Microsoft.AspNetCore.Mvc;
 
-namespace koszalka_api.Service;
+namespace koszalka_api.Persistence.Repository;
 
-public interface IBikeService
+public interface IBikeRepository
 {
     Task<IEnumerable<BikeDTO>> GetAllAsync();
     Task<BikeDTO> GetByIdAsync(long id);

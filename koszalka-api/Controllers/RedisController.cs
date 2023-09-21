@@ -1,7 +1,7 @@
 ﻿using koszalka_api.Caching;
 using koszalka_api.Events.Kafka;
 using koszalka_api.Persistence.DTO;
-using koszalka_api.Service;
+using koszalka_api.Persistence.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp;
@@ -17,10 +17,10 @@ namespace koszalka_api.Controllers
     {
 
         private readonly ICacheService _iCacheService;
-        private readonly IBikeService _bikeService;
+        private readonly IBikeRepository _bikeService;
         private const int CACHE_TIME = 30;
 
-        public RedisController(ICacheService iCacheService, IBikeService bikeService)
+        public RedisController(ICacheService iCacheService, IBikeRepository bikeService)
         {
             _iCacheService = iCacheService;
             _bikeService = bikeService;

@@ -12,10 +12,11 @@ using Microsoft.CodeAnalysis;
 using koszalka_api.Persistence.Model;
 using koszalka_api.Persistence.Data;
 using koszalka_api.Persistence.DTO;
+using koszalka_api.Persistence.Repository;
 
 namespace koszalka_api.Service
 {
-    public class ShoesService : IShoesService
+    public class ShoesService : IShoesRepository
     {
         // @todo implement mapper, fix dependency injection problem
         private readonly IMapper _mapper;

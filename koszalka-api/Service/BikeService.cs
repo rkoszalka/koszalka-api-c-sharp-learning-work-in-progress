@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using koszalka_api.Persistence.Model;
 using koszalka_api.Persistence.Data;
 using koszalka_api.Persistence.DTO;
+using koszalka_api.Persistence.Repository;
 
 namespace koszalka_api.Service
 
 {
-    public class BikeService : IBikeService
+    public class BikeService : IBikeRepository
     {
         private readonly DapperContext _context;
         private readonly IMapper _mapper;

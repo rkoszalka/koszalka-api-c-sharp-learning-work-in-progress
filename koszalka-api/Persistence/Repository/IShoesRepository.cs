@@ -2,9 +2,9 @@
 using koszalka_api.Persistence.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace koszalka_api.Service
+namespace koszalka_api.Persistence.Repository
 {
-    public interface IShoesService
+    public interface IShoesRepository
     {
         Task<ActionResult<IEnumerable<ShoesDTO>>> GetShoes();
         Task<ShoesDTO> GetShoe(long id);

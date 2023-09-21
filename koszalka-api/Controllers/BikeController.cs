@@ -1,6 +1,5 @@
 using AutoMapper;
 using koszalka_api.Persistence.DTO;
-using koszalka_api.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
@@ -8,6 +7,7 @@ using koszalka_api.Caching;
 using Microsoft.IdentityModel.Tokens;
 using NuGet.Protocol;
 using static Dapper.SqlMapper;
+using koszalka_api.Persistence.Repository;
 
 // Controller using Dapper ORM examples
 namespace koszalka_api.Controllers
@@ -16,9 +16,9 @@ namespace koszalka_api.Controllers
     [Route("[controller]")]
     public class BikeController : Controller
     {
-        private readonly IBikeService _bikeService;
+        private readonly IBikeRepository _bikeService;
 
-        public BikeController(IBikeService bikeService)
+        public BikeController(IBikeRepository bikeService)
         {
             _bikeService = bikeService;
         }
