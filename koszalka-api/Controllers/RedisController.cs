@@ -27,7 +27,7 @@ namespace koszalka_api.Controllers
         }
 
         [HttpPost("singleData")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(string), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
@@ -37,15 +37,36 @@ namespace koszalka_api.Controllers
                 return "Cache set";
         }
 
+        [HttpPost("appendData")]
+        //[Authorize(Roles = "Admin")]
+        [ProducesResponseType(typeof(string), 201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        public string AppendData([FromQuery] string msg, [FromQuery] string key)
+        {
+            var resAppendData = _iCacheService.AppendData(key, msg);
+            return resAppendData;
+        }
+
 
         [HttpGet("getData")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(string), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
         public string GetAllRedisTest([FromQuery] string key)
         {
             return _iCacheService.GetData<string>(key).ToString();
+        }
+
+        [HttpGet("getAppendedData")]
+        //[Authorize(Roles = "Admin")]
+        [ProducesResponseType(typeof(string), 201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        public string GetAppendData([FromQuery] string key)
+        {
+            return _iCacheService.GetAppendedData(key);
         }
     }
 }

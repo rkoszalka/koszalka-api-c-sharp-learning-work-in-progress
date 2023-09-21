@@ -1,5 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using NuGet.Protocol;
 using StackExchange.Redis;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace koszalka_api.Caching
 {
@@ -14,12 +19,12 @@ namespace koszalka_api.Caching
         {
             _db = ConnectionHelper.Connection.GetDatabase();
         }
-        public T GetData<T>(string key)
+        public string GetData<T>(string key)
         {
-            var value = _db.StringGet(key);
+            RedisValue value = _db.StringGet(key);
             if (!string.IsNullOrEmpty(value))
             {
-                return JsonConvert.DeserializeObject<T>(value);
+                return value;
             }
             return default;
         }
@@ -38,5 +43,18 @@ namespace koszalka_api.Caching
             }
             return false;
         }
+
+        public string AppendData( RedisKey key, RedisValue value)
+        {
+            RedisValue appendRedisValue = _db.StreamAdd(key, "key", value);
+            return appendRedisValue.ToString();
+        }
+
+        public string GetAppendedData(RedisKey key)
+        {
+            return _db.StreamRead(key, "0-0").ToJson();
+        }
+
+     
     }
 }
