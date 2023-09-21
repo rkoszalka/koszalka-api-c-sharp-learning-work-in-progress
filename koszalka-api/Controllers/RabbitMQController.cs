@@ -21,7 +21,7 @@ namespace koszalka_api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(string), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
