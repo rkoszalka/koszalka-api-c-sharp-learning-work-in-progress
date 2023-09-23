@@ -7,13 +7,13 @@ namespace koszalka_api.RabbitMQ
 {
     public class RabbitMQConsumer : IRabbitMQConsumer
     {
-        public void CreateRabbitMQConsumer(WebApplication app)
+        public void CreateRabbitMQConsumer()
         {
             // @todo: use IConfiguration
             var factory = new ConnectionFactory
             {
                 HostName = "host.docker.internal",
-                Port = 207,
+                Port = 208,
                 UserName = "guest",
                 Password  = "guest",
                 VirtualHost = "/",
@@ -34,8 +34,6 @@ namespace koszalka_api.RabbitMQ
                 Console.WriteLine($"Product message received: {message}");
             };
             channel.BasicConsume(queue: "product", autoAck: true, consumer: consumer);
-            app.Run();
-            Console.Read();
         }
     }
 }
