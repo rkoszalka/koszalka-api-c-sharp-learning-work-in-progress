@@ -1,4 +1,4 @@
-﻿namespace koszalka_api.Events.RabbitMQ
+﻿namespace koszalka_api.Events.RabbitMQ.Interfaces
 {
     public interface IRabbitMQConsumer
     {

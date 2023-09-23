@@ -1,7 +1,6 @@
 ﻿using System;
 using Confluent.Kafka;
-using koszalka_api.Events.RabbitMQ;
-using koszalka_api.RabbitMQ;
+using koszalka_api.Events.RabbitMQ.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -19,6 +19,7 @@ using koszalka_api.Events.RabbitMQ;
 using koszalka_api.Events.Kafka;
 using koszalka_api.Persistence.Repository;
 using ServiceCollectionAccessorService;
+using koszalka_api.Events.RabbitMQ.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,8 +58,9 @@ builder.Services.AddSwaggerGen(option =>
 builder.Services.AddTransient<IBikeRepository, BikeService>();
 builder.Services.AddTransient<IShoesRepository, ShoesService>();
 builder.Services.AddTransient<IAuthRepository, AuthService>();
-builder.Services.AddTransient<IRabitMQProducer, RabitMQProducer>();
+builder.Services.AddTransient<IRabitMQProducer, RabbitMQProducer>();
 builder.Services.AddTransient<IRabbitMQConsumer, RabbitMQConsumer>();
+builder.Services.AddTransient<IRabbitMQConnectionFactory, RabbitMQConnectionFactory>();
 builder.Services.AddTransient<ICacheService, CacheService>();
 builder.Services.AddTransient<EntityFrameworkConfigurationContext>();
 builder.Services.AddTransient<DapperContext>();

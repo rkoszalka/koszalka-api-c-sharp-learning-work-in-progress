@@ -1,25 +1,23 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
-using koszalka_api.Events.RabbitMQ;
+using koszalka_api.Events.RabbitMQ.Interfaces;
+using Microsoft.AspNetCore.Connections;
 
 namespace koszalka_api.RabbitMQ
 {
     public class RabbitMQConsumer : IRabbitMQConsumer
     {
+        private readonly IRabbitMQConnectionFactory _connectionFactory;
+
+        public RabbitMQConsumer(IRabbitMQConnectionFactory connectionFactory)
+        {
+            _connectionFactory = connectionFactory;
+        }
+
         public void CreateRabbitMQConsumer()
         {
-            // @todo: use IConfiguration
-            var factory = new ConnectionFactory
-            {
-                HostName = "host.docker.internal",
-                Port = 208,
-                UserName = "guest",
-                Password  = "guest",
-                VirtualHost = "/",
-            };
-            Console.WriteLine($"Factory: {factory}");
-            var connection = factory.CreateConnection();
+            var connection = _connectionFactory.CreateConnection();
             if (connection.IsOpen)
             {
                 Console.WriteLine($"Consumer started: {connection.IsOpen}");
