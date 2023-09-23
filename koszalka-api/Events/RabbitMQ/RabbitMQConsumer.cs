@@ -15,15 +15,14 @@ namespace koszalka_api.RabbitMQ
             _connectionFactory = connectionFactory;
         }
 
-        public void CreateRabbitMQConsumer()
+        public void CreateRabbitMQConsumer(WebApplication app)
         {
             var connection = _connectionFactory.CreateConnection();
             if (connection.IsOpen)
             {
                 Console.WriteLine($"Consumer started: {connection.IsOpen}");
             }
-            using
-                var channel = connection.CreateModel();
+            using var channel = connection.CreateModel();
             channel.QueueDeclare("product", exclusive: false);
             var consumer = new EventingBasicConsumer(channel);
             consumer.Received += (model, eventArgs) => {
@@ -32,6 +31,8 @@ namespace koszalka_api.RabbitMQ
                 Console.WriteLine($"Product message received: {message}");
             };
             channel.BasicConsume(queue: "product", autoAck: true, consumer: consumer);
+            app.Run();
+            Console.Read();
         }
     }
 }

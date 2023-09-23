@@ -116,8 +116,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 static IRabbitMQConsumer GetRabbitMqConsumer() => ServiceCollectionAccessor.Services.BuildServiceProvider().GetRequiredService<IRabbitMQConsumer>();
-GetRabbitMqConsumer().CreateRabbitMQConsumer();
+GetRabbitMqConsumer().CreateRabbitMQConsumer(app);
 
-app.Run();
 
 
