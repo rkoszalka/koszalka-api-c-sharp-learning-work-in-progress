@@ -18,15 +18,14 @@ using koszalka_api.Persistence.Data;
 using koszalka_api.Events.RabbitMQ;
 using koszalka_api.Events.Kafka;
 using koszalka_api.Persistence.Repository;
+using ServiceCollectionAccessorService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-
-// Add services to the container.
-
+builder.Services.AddServiceCollectionAccessor();
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(option =>
 {
@@ -114,12 +113,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-RabbitMQConsumer rabbitMqConsumer = new();
-rabbitMqConsumer.CreateRabbitMQConsumer(app);
+static IRabbitMQConsumer GetRabbitMqConsumer() => ServiceCollectionAccessor.Services.BuildServiceProvider().GetRequiredService<IRabbitMQConsumer>();
+GetRabbitMqConsumer().CreateRabbitMQConsumer();
 
-
-
-
-
+app.Run();
 
 

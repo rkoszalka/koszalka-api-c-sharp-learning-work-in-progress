@@ -2,6 +2,6 @@
 {
     public interface IRabbitMQConsumer
     {
-        public void CreateRabbitMQConsumer(WebApplication app);
+        public void CreateRabbitMQConsumer();
     }
 }
